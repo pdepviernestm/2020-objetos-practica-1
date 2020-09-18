@@ -6,7 +6,7 @@ Sabemos que Tom tiene una cantidad de energía que varía a lo largo del juego, 
 
 Ya disponemos de una implementación para Jerry, y algunas ideas de lo que necesitaremos implementar para Tom en el archivo `tomYJerry.wlk`. A continuación se describen los requerimientos para completar su definición.
 
-![Tom y Jerry](game/tomYJerry-game.gif)
+![Tom y Jerry](assets/tomYJerry-game.gif)
 
 ## Parte 1 (Acá no es necesario Wollok Game)
 
