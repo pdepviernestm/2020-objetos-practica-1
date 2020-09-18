@@ -4,7 +4,7 @@ Estamos armando un juego en el que tenemos a Tom, el gato, que se la pasa persig
 
 Sabemos que Tom tiene una cantidad de energía que varía a lo largo del juego, dependiendo de sus actividades de comer ratones y de correr. También será relevante la velocidad a la que son capaces de correr Tom y Jerry.
 
-Ya disponemos de una implementación para Jerry, y algunas ideas de lo que necesitaremos implementar para Tom en el archivo `tomYJerry.wlk`. A continuación se describen los requerimientos para completar su definición.
+Ya disponemos de una implementación para Jerry, y algunas ideas de lo que necesitaremos implementar para Tom. A continuación se describen los requerimientos para completar su definición.
 
 ![Tom y Jerry](assets/tomYJerry-game.gif)
 
@@ -23,7 +23,7 @@ Necesitamos implementar la siguiente lógica para Tom:
 - Cuando Tom come un ratón, su energía aumenta en relación al peso del ratón comido.
 - Cuando Tom corre una cantidad de segundos, pierde energía. Debería perder más energía cuando corre rápido que cuando corre lento.
 
-## Parte 2
+## Parte 2 (aun sin wollok game)
 
 Necesitamos poder determinar si a Tom le conviene correr a un ratón que se encuentra a una distancia indicada (en metros). Esto será cierto si Tom es más veloz que el ratón, y además la energía que gana por comer al ratón es mayor a la que consume corriendo esa distancia.
 
