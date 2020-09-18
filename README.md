@@ -43,14 +43,26 @@ Debemos validar que:
 
 ## Wollok Game
 
-Disponemos de una interfaz gráfica para "jugar al juego". Si Tom consigue atrapar a Jerry se lo come siguiendo la lógica definida en la **parte 1** del ejercicio, y luego Jerry revivirá más veloz un par de veces.
+Disponemos de una interfaz gráfica para "jugar al juego" que está incompleta.
+
+El juego debería funcionar así:
+- Si Tom consigue atrapar a Jerry se lo come siguiendo la lógica definida en la **parte 1** del ejercicio, y luego Jerry revivirá más veloz algunas veces, hasta que deja de aparecer cuando ya alcanzó cierta velocidad.
 
 Con las flechas se puede mover a Tom de a un casillero sin que eso impacte a su energía. 
 
 Y además:
 - Usando la **tecla espacio** se le indica a Tom que corra a Jerry (usando la lógica de la **parte 1**)
 - Usando la **tecla i** Tom nos dice si le conviene correr a Jerry (usando la lógica de la **parte 2**)
-- Usando la **tecla s**... averiguá qué pasa :wink:
+- Usando la **tecla s** hacemos aparecer a otro ratón!
 
 > Para correr el juego, seleccioná el archivo `game/tomYJerryGame.wpgm` y correlo con la opción `Run As -> Wollok Program`.
 
+
+Ahora, mucho de esto esta incompleto, así que hay varios TODOs para implementar ;)
+
+Estan en el código, pero los repetimos acá:
+- **hacer que tomVisual pueda usar a tom**, hay un objeto que debería mostrar a tom en pantalla y que delega bastante comportamiento en el tom que implementamos en las partes 1 y 2, necesitamos que este tomVisual pueda usar a tom para que cuando ocurran acciones que involucren a tom (como colisionar con Jerry) pase lo que queremos.
+- **hacer que cuando tomVisual atrape al raton, se lo coma y le mande al raton que fue atrapado**, es decir, que modifique su energía según la lógica de comerse el ratón, y que el ratón que se comió reciba el mensaje de que fue atrapado así puede hacer algo al respecto (revisar que mensajes entiende el raton que está en el mismo archivo).
+- **hacer que tomVisual se mueva hasta la posición donde estaba su perseguido tras hacer una corrida**
+- **hacer que cuando apretemos i tom nos diga si le conviene perseguir a jerry**, tomVisual ya sabe contestarlo, pero queremos que nos lo diga cuando apretamos i!
+- **Agregar a speedy gonzalez, y hacer que aparezca al apretar S**, en el código dice que cosas debería cumplir.
