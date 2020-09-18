@@ -1,0 +1,16 @@
+import jerry.*
+
+describe "Jerry" {
+	test "su peso es 5" {
+		assert.equals(5, jerry.peso())
+	}
+
+	test "al acelerar aumenta su velocidad en un 50%" {
+		jerry.velocidad(100)
+	
+		jerry.acelerar()
+	
+		assert.equals(150, jerry.velocidad())
+	}
+	
+}

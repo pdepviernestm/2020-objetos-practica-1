@@ -1,91 +1,56 @@
-# Consigna TP0
+# Tom y Jerry
 
-Nombre: ...completar...
+Estamos armando un juego en el que tenemos a Tom, el gato, que se la pasa persiguiendo a Jerry, un ratón.
 
-Legajo: ...completar...
+Sabemos que Tom tiene una cantidad de energía que varía a lo largo del juego, dependiendo de sus actividades de comer ratones y de correr. También será relevante la velocidad a la que son capaces de correr Tom y Jerry.
 
-## Objetivos
+Ya disponemos de una implementación para Jerry, y algunas ideas de lo que necesitaremos implementar para Tom en el archivo `tomYJerry.wlk`. A continuación se describen los requerimientos para completar su definición.
 
-- Que empieces a conocer algunas de las herramientas que vamos a estar usando durante la cursada, asegurando que te funcionen antes de que que sigamos avanzando con la práctica del paradigma orientado a objetos.
-- Seguir usando la ejecución de pruebas automáticas como parte del flujo de trabajo, para asegurar que la solución propuesta cumpla con la funcionalidad esperada.
-- Usar un entorno de desarrollo que te ayude a detectar y resolver problemas de forma temprana.
-- Usar un repositorio de código donde puedas subir tus cambios todas las veces que quieras, para que tus tutores puedan verlos y dejarte comentarios, así como también mantener un historial de lo que fuiste haciendo, sin miedo a perder tu trabajo.
+![Tom y Jerry](game/tomYJerry-game.gif)
 
-## Parte 1: Preparar y probar tu entorno
+## Parte 1 (Acá no es necesario Wollok Game)
 
-1. Seguí las instrucciones para instalar Wollok que se encuentran en la página oficial: https://www.wollok.org/instalacion/
+Necesitamos implementar la siguiente lógica para Tom:
+- La velocidad de Tom es 5 metros x segundo + (energia medida en joules / 10). 
+- Cuando Tom come un ratón, su energía aumenta en 12 joules + el peso del ratón. 
+- Cuando Tom corre durante una cantidad de segundos indicada, su energía disminuye en (0.5 x cantidad de metros que corrió).
 
-  > Importante: si ya tenías Wollok instalado, descargá la versión nueva desde la página, que tiene mejoras importantes.
-  
-2. Importá el proyecto en el entorno de desarrollo usando las opciones:
+> Observar que la cuenta para el consumo de energía al correr está en joules consumidos por metro, pero cuando me dicen cuánto corrió, es en segundos. La velocidad a considerar para saber cuántos metros corre en esa cantidad de segundos es la que tiene Tom antes de empezar a correr, no varía durante una carrera.
 
-  - File -> Import...
-  - Elegí esta opción para importar un repo usando el plugin Simplified Git y seguí los pasos para clonar tu repo
-  
-    ![Import sgit](imagenes/sgit-import.jpg)
-    
-  - Copiá la dirección para clonar tu repo que se obtiene de GitHub en el campo URI:
-  
-    ![Repo sgit](imagenes/sgit-uri.jpg)
+### ¿Que podríamos probar?
 
-3. Una vez que tengas tu proyecto en el IDE, corré las pruebas como se indica en la sección **Cómo ejecutar la solución** del `README.md` que se encuentra en la raíz del proyecto (vale correr sólo las del TP0 o las de todo el proyecto, al haber sólo un TP el resultado será el mismo).
+- La velocidad de Tom depende de su energía. Por ejemplo, si tiene 20 joules de energía, su velocidad debería ser 7.
+- Cuando Tom come un ratón, su energía aumenta en relación al peso del ratón comido.
+- Cuando Tom corre una cantidad de segundos, pierde energía. Debería perder más energía cuando corre rápido que cuando corre lento.
 
-   Asegurate de que el test del TP0 **falle**, ya que todavía no se implementó lo necesario en el archivo `src/deepThought.wlk` para que pase.
+## Parte 2
 
-   Debería mostrarse el resultado de haber corrido las pruebas, incluyendo algo como esto:
-   
-   ![Test fallido](imagenes/tests-1.jpg)
-   
-   al seleccionar un test fallido vas a ver algunos detalles sobre qué fue lo que no funcionó como se esperaba.
-   
-  > Además si abrís el archivo `src/tp0.wtest` deberías ver un warning de este estilo: `Type system: expected <<String>> but found <<Number>>`.
-  > Ese es el sistema de tipos de Wollok, que infiere información de tipos a partir de tu código para ayudarte a detectar potenciales problemas de forma temprana.
+Necesitamos poder determinar si a Tom le conviene correr a un ratón que se encuentra a una distancia indicada (en metros). Esto será cierto si Tom es más veloz que el ratón, y además la energía que gana por comer al ratón es mayor a la que consume corriendo esa distancia.
 
-4. En el archivo `src/deepThought.wlk` cambiá el string `"???"` que retorna el método `laRespuesta()` por la expresión `1 / 0`, guardá los cambios y volvé a correr los tests.
+### ¿Que podríamos probar?
 
-   Deberías ver que el resultado de las pruebas todavía no es exitoso, en este caso debería mostrarse como un **error** porque se ejecutó una división por cero.
-   
-   ![Test rojo](imagenes/tests-2.jpg)
-   
-  > En el detalle del error vas a encontrar un **stacktrace** que muestra dónde ocurrió el problema. Si clickeás en los links te va a llevar a la línea correspondiente del archivo donde ocurrió el error.
+Debemos validar que:
+- A Tom le conviene correr a un ratón que le aporta más energía de la que perdería por correrlo
+- A Tom no le conviene correr a un ratón que le aporta menos energía de la que perdería corriéndolo
+- A Tom no le conviene correr a un ratón que es más veloz que él, independientemente de la distancia a la que se encuentre
 
-5. Volvé a cambiar el valor retornado por `laRespuesta()`, esta vez usando el número `42`, guardá y volvé a correr los tests. Confirmá que el test del TP0 ahora sí pasa.
+## Para pensar
 
-   ![Test verde](imagenes/tests-3.jpg)
+- ¿Tom es capaz de trabajar con otros ratones con la implementación actual?
+- ¿Qué hace falta cumplir para ser considerado un ratón?
 
-## Parte 2: Subir tus cambios a GitHub
+---------
 
-Al igual que en los otros trabajos, deberías subir tu solución a GitHub. Podés usar tanto la terminal del sistema operativo (o gitbash) como venías haciendo hasta ahora, o también podés usar un plugin integrado al IDE de Wollok. Para que se muestre usá estas opciones:
+## Wollok Game
 
-   ![Abrir vista](imagenes/sgit-1.jpg)
-   
-   ![Elegir sgit](imagenes/sgit-2.jpg)
-   
-  > Hay otro plugin similar llamado Git Staging que incluye otras opciones que no consideramos relevantes, y no incluye las opciones de Pull (para integrar los cambios en GitHub que no estén en el repo local) y Push (útil en caso de problemas de conectividad y potenciales conflictos).
+Disponemos de una interfaz gráfica para "jugar al juego". Si Tom consigue atrapar a Jerry se lo come siguiendo la lógica definida en la **parte 1** del ejercicio, y luego Jerry revivirá más veloz un par de veces.
 
-1. Luego de seleccionar tu proyecto debería aparecer la lista de archivos modificados. Para agregar todos tus cambios a lo que será tu siguiente commit:
+Con las flechas se puede mover a Tom de a un casillero sin que eso impacte a su energía. 
 
-   ![Agregar todos los cambios](imagenes/sgit-add.jpg)
-   
-   Luego de agregarlos, los archivos modificados van a moverse a la lista de abajo (Staged changes), indicando que esos archivos se incluirán en el siguiente commit.
-   
-   ![Agregar todos los cambios](imagenes/sgit-cambios-agregados.jpg)
-   
-2. Commitear tus cambios con un mensaje representativo y pushearlos al repo remoto:
-   
-   ![Commit and push](imagenes/sgit-commit-and-push.jpg)
-   
-   > La primera vez que commitees con un autor que no tengas configurado te va a pedir el mail únicamente. Es para una configuración local de git, no es muy relevante.
-   >
-   > ![Author](imagenes/sgit-first-commit.jpg)
+Y además:
+- Usando la **tecla espacio** se le indica a Tom que corra a Jerry (usando la lógica de la **parte 1**)
+- Usando la **tecla i** Tom nos dice si le conviene correr a Jerry (usando la lógica de la **parte 2**)
+- Usando la **tecla s**... averiguá qué pasa :wink:
 
-Ya sabés que podés subir tu solución tantas veces como quieras. **Es recomendable hacer commits chicos y frecuentes**, en vez de un solo gran commit con todo lo que se pedía resolver.
+> Para correr el juego, seleccioná el archivo `game/tomYJerryGame.wpgm` y correlo con la opción `Run As -> Wollok Program`.
 
-> En caso de que tengas problemas con el plugin Simplified Git, vale usar el plugin Git Staging junto con otras opciones del IDE que se mencionan en apuntes que están en la página, y también podés usar los comandos de siempre usando gitbash.
-
-## Parte 4: Avisar que terminaste el TP
-
-Cuando terminen, creen un issue etiquetando a sus tutores así les llega una notificación y se corrigen y les dejan feedback ahí.
-![](https://i.imgur.com/ypeXpBw.gif)
-
-Ante cualquier problema técnico, recordá que podés contactarnos también por Discord, a través del canal **#troubleshooting**.
